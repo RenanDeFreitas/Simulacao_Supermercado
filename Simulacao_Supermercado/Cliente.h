@@ -2,8 +2,8 @@
 #ifndef CLIENTE_H
 #define CLIENTE_H
 
-#include "Fila.h"
 #include<iostream>
+#include "Fila.h"
 using namespace std;
 
 struct Cliente
@@ -27,7 +27,7 @@ void chegadaDeClientes(Fila<T> *caixa, int qtdFilas) {
 		if (i == 5) { //Os clientes 5, 6, 7, 8 e 9 vão demorar 3 unidades de tempo para serem atendidos
 			unidadeTempo++;
 		}
-		Cliente *cliente = new Cliente(unidadeTempo); //Cria o cliente e adiciona uma unidade de tempo u.t
+		Cliente cliente(unidadeTempo); //Cria o cliente e adiciona uma unidade de tempo u.t
 
 		int filaMenor = caixa[0].qtd;
 		int numeroFilaMenor = 0;
@@ -37,12 +37,11 @@ void chegadaDeClientes(Fila<T> *caixa, int qtdFilas) {
 				filaMenor = caixa[i].qtd;
 				numeroFilaMenor = i;
 			}
+
+			enfileirar(caixa[numeroFilaMenor], cliente); //Passa o caixa com menor fila e o conteudo do ponteiro cliente para ser enfileirado
 		}
 
-		enfileirar(caixa[numeroFilaMenor], cliente); //Passa o caixa com menor fila e o conteudo do ponteiro cliente para ser enfileirado
-
 	}
-
 }
 
 template<typename T>
