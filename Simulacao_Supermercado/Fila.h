@@ -2,8 +2,6 @@
 #ifndef FILA_H
 #define FILA_H
 
-#include "Cliente.h"
-#include<iostream>
 using namespace std;
 
 template<typename T>
@@ -11,6 +9,7 @@ struct ElementoF
 {
 	T dado;
 	ElementoF<T> *prox;
+
 };
 
 template<typename T>
