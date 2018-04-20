@@ -29,7 +29,7 @@ void inicializarFila(Fila<T> &fila) {
 
 template<typename T>
 bool enfileirar(Fila<T> &fila, T dado) {
-	ElementoF<T> *novo = new ElementoF<T>;
+	ElementoF<T> * novo = new ElementoF<T>;
 	if (novo == NULL) {
 		return false;
 	}
@@ -54,7 +54,7 @@ bool desenfileirar(Fila<T> &fila) {
 	ElementoF<T> *apagar;
 	apagar = fila.inicio;
 	fila.inicio = fila.inicio->prox;
-	if (fila == 1) {
+	if (fila.qtd == 1) {
 		fila.ultimo = fila.ultimo->prox;
 	}
 

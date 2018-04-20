@@ -10,13 +10,14 @@ struct Cliente
 {
 	int tempo;
 
+	Cliente(){}
 	Cliente(int tempo) {
 		this->tempo = tempo;
 	}
 };
 
-template<typename T>
-void chegadaDeClientes(Fila<T> *caixa, int qtdFilas) {
+
+void chegadaDeClientes(Fila<Cliente> *caixa, int qtdFilas) {
 	int unidadeTempo = 1; //Unidade de tempo que um cliente leva para ser atendido
 
 	for (int i = 0; i < 10; i++)
@@ -37,21 +38,23 @@ void chegadaDeClientes(Fila<T> *caixa, int qtdFilas) {
 				filaMenor = caixa[i].qtd;
 				numeroFilaMenor = i;
 			}
-
-			enfileirar(caixa[numeroFilaMenor], cliente); //Passa o caixa com menor fila e o conteudo do ponteiro cliente para ser enfileirado
 		}
+
+		enfileirar(caixa[numeroFilaMenor], cliente); //Passa o caixa com menor fila e o conteudo do ponteiro cliente para ser enfileirado
 
 	}
 }
 
-template<typename T>
-void atendimentoDeClientes(Fila<T> *caixa, int qtdFilas) {
+
+void atendimentoDeClientes(Fila<Cliente> *caixa, int qtdFilas) {
 	for (int i = 0; i < qtdFilas; i++) { //roda todas as fileiras
-		if (caixa[i]->tempo > 0) {
-			caixa[i].inicio.tempo--; //diminui 1 u.t (unidade de tempo)
-		}
-		else {
-			desenfileirar(caixa[i]); //Desenfileirar não precisa de T dado em fila.h, arrumar isso
+		if (caixa[i].qtd > 0) {
+			if (caixa[i].inicio->dado.tempo > 0) {
+				caixa[i].inicio->dado.tempo--; //diminui 1 u.t (unidade de tempo)
+			}
+			else {
+				desenfileirar(caixa[i]); //Desenfileirar não precisa de T dado em fila.h, arrumar isso
+			}
 		}
 	}
 }
